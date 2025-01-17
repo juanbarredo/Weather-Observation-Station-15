@@ -20,7 +20,7 @@ USE Weather_Observation_Station_2;
 SELECT *
 	FROM STATION;
 
-SELECT LONG_N, LAT_N
+SELECT LONG_W, LAT_N
 	FROM STATION;
 
 --Ok,
@@ -39,7 +39,7 @@ SELECT LONG_N, LAT_N
 
 --SELECT CAST(MAX(LAT_N) AS DECIMAL(7,4))
 --	FROM STATION
---	WHERE LONG_N < 137.2345;
+--	WHERE LONG_W < 137.2345;
 
 --Ok,
 --wrong first few attempts.
@@ -47,7 +47,7 @@ SELECT LONG_N, LAT_N
 --ok, first problem I see with my approach is that
 --it is LAT_N that should be less than 137.2345.
 
---in line 42, I clearly have LONG_N.
+--in line 42, I clearly have LONG_W.
 --I need to rething my approach which will take time.
 
 --I might solve this one tomorrow.
@@ -104,9 +104,9 @@ SELECT	MAX(LAT_N)
 --so, it is true that LAT_N and LONG_W are normalized.
 --there are 499 rows of each.
 
---I can (but how) logically ask LONG_N for anything is LAT_N.
+--I can (but how) logically ask LONG_W for anything is LAT_N.
 
---I can ask LONG_N for ... and this is where I am not seeing the next logic.
+--I can ask LONG_W for ... and this is where I am not seeing the next logic.
 
 --Either way, I think next time I am going to work on fixing the labels of the table STATION.
 
