@@ -104,9 +104,62 @@ SELECT	MAX(LAT_N)
 --so, it is true that LAT_N and LONG_W are normalized.
 --there are 499 rows of each.
 
---I can (but how) logically ask LONG_W for anything is LAT_N.
+--I can (but how) logically ask LONG_W for anything in LAT_N.
 
 --I can ask LONG_W for ... and this is where I am not seeing the next logic.
 
 --Either way, I think next time I am going to work on fixing the labels of the table STATION.
 
+--------------------------------------01 19 2025----------------------------------------------------------------
+
+--OK,
+
+--I need to get reaquainted with the prolem again.
+
+--ok, I am looking at my notes and found that I scribbled a query down during the
+--reflect phase of the pomodoro on 01/16/2025.
+
+--SELECT MAX(LAT_N)
+--	FROM STATION
+--	WHERE LONG_W<137.2345;
+
+--I think I see a problem
+--line 124 is querying LONG_W
+
+--I think it is LAT_N that should be less than 137.2345
+--not LONG_W.
+
+--then should it be a subquery
+
+--SELECT LAT_N
+--	FROM STATION
+--	WHERE LONG_W =
+--	(SELECT MAX(LAT_N)
+--		FROM STATION);
+
+--for now,
+--I think WHERE is how to
+--operationalize having to query one field
+--for the contents in another.
+
+--I feel if I don't make really good progress today,
+--I will look up the answer.
+
+--I think I am just going to write
+--a query disregarding the 
+--"Query the western Longitude for the largest northern latitude"
+--instead, I will do "find the largest northern latitude in STATION that is less than 137.2345"
+
+SELECT ROUND(CAST(LAT_N AS DECIMAL(7,4)),4)
+	FROM STATION
+	WHERE LAT_N < 137.2345;
+
+	--But I don't think MAX is the right funciton.
+	--the 
+
+--Ok,
+--I tried and found so many interesting issues.
+
+--the round your answer to 4 decimal places.
+
+--I am re-invigorated by the problem.
