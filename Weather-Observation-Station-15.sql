@@ -150,9 +150,9 @@ SELECT	MAX(LAT_N)
 --"Query the western Longitude for the largest northern latitude"
 --instead, I will do "find the largest northern latitude in STATION that is less than 137.2345"
 
-SELECT ROUND(CAST(LAT_N AS DECIMAL(7,4)),4)
-	FROM STATION
-	WHERE LAT_N < 137.2345;
+--SELECT ROUND(CAST(LAT_N AS DECIMAL(7,4)),4)
+--	FROM STATION
+--	WHERE LAT_N < 137.2345;
 
 	--But I don't think MAX is the right funciton.
 	--the 
@@ -163,3 +163,73 @@ SELECT ROUND(CAST(LAT_N AS DECIMAL(7,4)),4)
 --the round your answer to 4 decimal places.
 
 --I am re-invigorated by the problem.
+
+----------------------------01 20 2025-----------------------------------------
+
+--ok,
+
+--so,
+
+--I ended up by startin to look through the book for ideas on how to proceed
+--I didn't find anything
+--but I did end up reading on nested loops
+--and they are not what I though they were.
+
+--I will have to look at more concrete examples.
+
+--ok,
+
+--Looking through the book inspired me to comoe up with a google search
+
+--I found a possible idea 
+
+--SELECT ID FROM [TableName]
+--WHERE Calling_ID IN
+--(
+--SELECT Called_ID FROM [TableName]
+--)
+
+--so, how would I rework for my situation.
+
+--SELECT LAT_N
+--	FROM STATION
+--	WHERE LAT_N IN
+--	(
+--	SELECT LONG_W 
+--		FROM STATION
+--		WHERE LAT_N < 137.2345
+--);
+
+--I realized this was a subquery like half way through
+--the SELECT statement in line 198.  the inner select query.
+
+--I am excited to run it.
+
+USE Weather_Observation_Station_2
+SELECT MAX(LAT_N)
+	FROM STATION
+	WHERE LONG_W IN--here, I need to fix this.
+	(
+	SELECT LONG_W 
+		FROM STATION
+		WHERE LAT_N < 137.2345
+);
+
+--It gave me an empty result set.
+
+--Ok, I went through a few iterations really fast.
+
+--but I don't think I am getting the correct output
+
+--ok, 
+--I need to rebuild some assumtions.
+
+USE Weather_Observation_Station_2;
+SELECT LAT_N
+	FROM STATION
+		WHERE LONG_W = 65.6849136352539;
+
+		--Ok, here I get a deep sense of satisfaction
+		--that I can use to build next time's query.
+
+		--I am burnt.
