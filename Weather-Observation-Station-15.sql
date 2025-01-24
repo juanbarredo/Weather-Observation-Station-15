@@ -233,3 +233,41 @@ SELECT LAT_N
 		--that I can use to build next time's query.
 
 		--I am burnt.
+
+--------------------------------01 23 2025------------------------------------
+--I am super excited for a keyboard that I ordered
+
+--So, since last time with the help of query in lines 227 to 230
+--I have re-understood the WHERE clause.
+
+--it is very complicated.
+--it can do many things.
+
+--so,
+--let me carve out the query.
+
+--query the western longitude
+--for the largest northern latitude --it already feels better.
+--that is less than 137.2345
+
+USE Weather_Observation_Station_2;
+SELECT CAST(MAX(LAT_N ) AS DECIMAL(7,4))
+	FROM STATION
+	WHERE LONG_W < 137.2345;
+
+	--Oh no
+	--wrong answer.
+
+	--I think then the wording 
+	--we go back to a previous problem
+	--but the WHERE in line 256 should
+	--be for LAT_N.
+	--will it need a subquery?
+
+		--I just tried to solve it quickly 
+		--wrong answer
+
+			--this is a really weird problem for me
+			--at least I got a better handle on the WHERE
+			--clause.
+
