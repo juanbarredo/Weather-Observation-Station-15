@@ -271,3 +271,81 @@ SELECT CAST(MAX(LAT_N ) AS DECIMAL(7,4))
 			--at least I got a better handle on the WHERE
 			--clause.
 
+--------------------01 26 2025---------------------------------------
+
+--so, now just having read the problem again am thinknign that
+--what I need to do is to do the WHERE clause be LONG_W --
+--not LAT_N
+--so, I think though that I may have done that before?
+
+--let me try it again
+
+USE Weather_Observation_Station_2;
+SELECT ROUND(MAX(LAT_N),4)
+	FROM STATION
+		WHERE LONG_W < 137.2345; 
+
+	--YEAH, I DID THIS LAST TIME ALREADY
+
+	--THEN WHAT IS THE ISSUE?
+	--THE ROUNDING?
+
+--I for get how the previous answer was displayed on 
+
+--still wrong answer
+
+--is it then that 
+
+USE Weather_Observation_Station_2;
+SELECT CAST(ROUND(MAX(LONG_W),4) AS DECIMAL (7,4))
+	FROM STATION
+		WHERE LAT_N < 137.2345;
+
+		--I worked this one through and they didn't like it?
+
+		--OK, I AM SEEING A DISCREPANCY
+		--IN THE HACKERRANK.COM SCREEN IT SAYS
+		--THAT THE RESULT SET OF THE SAME QUERY AS
+		--IN LINES 300-302 IS 164.8760
+		--HOWEVER, IN MS SSMS 
+		--IT SAYS THAT THE ANSWER IS 
+		--164.8761
+
+		--I HAVE TO WORK ON THIS SMALL DETAIL
+
+		--I CHANGED THE PARAMETER ON THE ROUND FROM 4 TO 5
+		--AND GOT THE WRONG ANSWER AGAIN BUT IT DISPLAYED 
+		--164.8761
+
+		--REALLY FRUSTRATING.
+
+		--I THINK THAT I AM JUST GOING TO LOOK UP THE ANSWER FO RTHIS PROBLEM
+
+		--OK,
+		--I looked up the asnwer and found one to work through
+
+		--for ms sql
+		--from mominmustakeem61
+		--SELECT FORMAT(LONG,'###.####') 
+		--FROM STATION
+		--WHERE LAT_N = 
+		--(SELECT MAX(LAT_N)
+		--FROM STATION
+		--WHERE LAT_N < 137.2345)
+
+			--The other answers took such a weird approach
+
+			--there were others who were very close to what I was getting at
+
+			--another one by sonaldubey2207
+			--SELECT CAST(ROUND(LONG_W,4) AS DECIMAL(10,4))
+			--FROM STATION
+			--WHERE LAT_N < 137.2345
+			--ORDER BY LAT_N DESC LIMIT 1;
+
+			--I am getting such a sense of awe at other people's styles already
+			--such an interesting way to solve things.
+
+			--yeah, I am very excited to get back next time.
+
+		
