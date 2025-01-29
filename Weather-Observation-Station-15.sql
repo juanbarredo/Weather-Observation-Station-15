@@ -348,4 +348,49 @@ SELECT CAST(ROUND(MAX(LONG_W),4) AS DECIMAL (7,4))
 
 			--yeah, I am very excited to get back next time.
 
-		
+-----------------------------01 28 2025------------------------------------------------
+
+--I am back
+
+--Thinking about this new query
+
+--does it even work?
+
+SELECT CAST(ROUND(LONG_W,4) AS DECIMAL(10,4))
+			FROM STATION
+			WHERE LAT_N < 137.2345
+			ORDER BY "LAT_N" DESC;
+			--LIMIT 1;
+
+			--already line number 362 doesn't work.
+			--however,
+			--let me look at 
+
+USE Weather_Observation_Station_2;
+SELECT CAST(ROUND(MAX(LONG_W),4) AS DECIMAL (7,4))
+	FROM STATION
+		WHERE LAT_N < 137.2345;
+
+		--so, very very similarities between both
+
+		--I think the MAX should be placed on LAT_N instead of LONG_W like I have done.
+		--I think at least this would be very hard for me to have understood
+
+		--so, let me look at  the syntax for ORDER BY
+		--in the book!
+
+		--I think I have to do a subquery.
+
+SELECT CAST(ROUND(LONG_W,4) AS DECIMAL(10,4))
+			FROM STATION
+			WHERE LAT_N IN  --here I introduce the subquery
+			(SELECT  MAX(LAT_N)
+			FROM STATION
+			WHERE LAT_N < 137.2345);
+
+			--OK, 
+			--I got a different answer than before
+			--but I don't have enough time to submit it
+			--I will try next time!
+
+			
