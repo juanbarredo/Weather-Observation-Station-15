@@ -16,12 +16,12 @@
 
 --maybe a first step is to see *
 
-USE Weather_Observation_Station_2;
-SELECT *
-	FROM STATION;
+--USE Weather_Observation_Station_2;
+--SELECT *
+--	FROM STATION;
 
-SELECT LONG_W, LAT_N
-	FROM STATION;
+--SELECT LONG_W, LAT_N
+--	FROM STATION;
 
 --Ok,
 --So,
@@ -76,10 +76,10 @@ SELECT LONG_W, LAT_N
 
 --it might just be something like
 
-USE Weather_Observation_Station_2;
-SELECT	MAX(LAT_N)
-	FROM STATION
-	WHERE LAT_N < 137.2345;
+--USE Weather_Observation_Station_2;
+--SELECT	MAX(LAT_N)
+--	FROM STATION
+--	WHERE LAT_N < 137.2345;
 
 --the above should basically do it
 --except there is the pesky 
@@ -205,15 +205,15 @@ SELECT	MAX(LAT_N)
 
 --I am excited to run it.
 
-USE Weather_Observation_Station_2
-SELECT MAX(LAT_N)
-	FROM STATION
-	WHERE LONG_W IN--here, I need to fix this.
-	(
-	SELECT LONG_W 
-		FROM STATION
-		WHERE LAT_N < 137.2345
-);
+--USE Weather_Observation_Station_2
+--SELECT MAX(LAT_N)
+--	FROM STATION
+--	WHERE LONG_W IN--here, I need to fix this.
+--	(
+--	SELECT LONG_W 
+--		FROM STATION
+--		WHERE LAT_N < 137.2345
+--);
 
 --It gave me an empty result set.
 
@@ -224,10 +224,10 @@ SELECT MAX(LAT_N)
 --ok, 
 --I need to rebuild some assumtions.
 
-USE Weather_Observation_Station_2;
-SELECT LAT_N
-	FROM STATION
-		WHERE LONG_W = 65.6849136352539;
+--USE Weather_Observation_Station_2;
+--SELECT LAT_N
+--	FROM STATION
+--		WHERE LONG_W = 65.6849136352539;
 
 		--Ok, here I get a deep sense of satisfaction
 		--that I can use to build next time's query.
@@ -250,10 +250,10 @@ SELECT LAT_N
 --for the largest northern latitude --it already feels better.
 --that is less than 137.2345
 
-USE Weather_Observation_Station_2;
-SELECT CAST(MAX(LAT_N ) AS DECIMAL(7,4))
-	FROM STATION
-	WHERE LONG_W < 137.2345;
+--USE Weather_Observation_Station_2;
+--SELECT CAST(MAX(LAT_N ) AS DECIMAL(7,4))
+--	FROM STATION
+--	WHERE LONG_W < 137.2345;
 
 	--Oh no
 	--wrong answer.
@@ -280,10 +280,10 @@ SELECT CAST(MAX(LAT_N ) AS DECIMAL(7,4))
 
 --let me try it again
 
-USE Weather_Observation_Station_2;
-SELECT ROUND(MAX(LAT_N),4)
-	FROM STATION
-		WHERE LONG_W < 137.2345; 
+--USE Weather_Observation_Station_2;
+--SELECT ROUND(MAX(LAT_N),4)
+--	FROM STATION
+--		WHERE LONG_W < 137.2345; 
 
 	--YEAH, I DID THIS LAST TIME ALREADY
 
@@ -296,10 +296,10 @@ SELECT ROUND(MAX(LAT_N),4)
 
 --is it then that 
 
-USE Weather_Observation_Station_2;
-SELECT CAST(ROUND(MAX(LONG_W),4) AS DECIMAL (7,4))
-	FROM STATION
-		WHERE LAT_N < 137.2345;
+--USE Weather_Observation_Station_2;
+--SELECT CAST(ROUND(MAX(LONG_W),4) AS DECIMAL (7,4))
+--	FROM STATION
+--		WHERE LAT_N < 137.2345;
 
 		--I worked this one through and they didn't like it?
 
@@ -356,20 +356,20 @@ SELECT CAST(ROUND(MAX(LONG_W),4) AS DECIMAL (7,4))
 
 --does it even work?
 
-SELECT CAST(ROUND(LONG_W,4) AS DECIMAL(10,4))
-			FROM STATION
-			WHERE LAT_N < 137.2345
-			ORDER BY "LAT_N" DESC;
+--SELECT CAST(ROUND(LONG_W,4) AS DECIMAL(10,4))
+--			FROM STATION
+--			WHERE LAT_N < 137.2345
+--			ORDER BY "LAT_N" DESC;
 			--LIMIT 1;
 
 			--already line number 362 doesn't work.
 			--however,
 			--let me look at 
 
-USE Weather_Observation_Station_2;
-SELECT CAST(ROUND(MAX(LONG_W),4) AS DECIMAL (7,4))
-	FROM STATION
-		WHERE LAT_N < 137.2345;
+--USE Weather_Observation_Station_2;
+--SELECT CAST(ROUND(MAX(LONG_W),4) AS DECIMAL (7,4))
+--	FROM STATION
+--		WHERE LAT_N < 137.2345;
 
 		--so, very very similarities between both
 
@@ -381,6 +381,7 @@ SELECT CAST(ROUND(MAX(LONG_W),4) AS DECIMAL (7,4))
 
 		--I think I have to do a subquery.
 
+USE Weather_Observation_Station_2;
 SELECT CAST(ROUND(LONG_W,4) AS DECIMAL(10,4))
 			FROM STATION
 			WHERE LAT_N IN  --here I introduce the subquery
@@ -393,4 +394,26 @@ SELECT CAST(ROUND(LONG_W,4) AS DECIMAL(10,4))
 			--but I don't have enough time to submit it
 			--I will try next time!
 
-			
+------------------------------01 30 2025--------------------------------------------------------
+
+
+--!
+--I submitted the query in lines 384 to 390 and it worked!
+
+--I have to admit that this one was very weirdly worded.
+
+--Query the western Longitude (LONG_W) 
+--for the largest Northern Latitude that is less than 137.2345.
+--Round your answer to 4 decimal places.
+
+--so,
+--not sure what to do.
+
+--regarding how I missed so many things in this problem.
+
+--I think line 406 was the most confusing.
+
+--MAX(LAT_N) that is less than 137.2345.
+--that is weird.
+--less than 137.2345.
+--while the MAX(LAT_N) is in play.
